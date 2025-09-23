@@ -8,12 +8,12 @@ class Solution {
     private void backtrack(int[] nums, int index, List<Integer> current,    
     List<List<Integer>>            
     result) {
-        result.add(new ArrayList<>(current)); // add current subset
+        result.add(new ArrayList<>(current)); 
 
         for (int i = index; i < nums.length; i++) {
-            current.add(nums[i]);                 // include nums[i]
-            backtrack(nums, i + 1, current, result); // recurse
-            current.remove(current.size() - 1);   // backtrack (remove last)
+            current.add(nums[i]);                 
+            backtrack(nums, i + 1, current, result); 
+            current.remove(current.size() - 1);   
         }
         
     
