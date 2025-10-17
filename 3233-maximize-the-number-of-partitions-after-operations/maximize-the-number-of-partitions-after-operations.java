@@ -1,10 +1,12 @@
 class Solution {
-     private Map<List<Integer>, Integer> memo = new HashMap<>();
+    
+
+    private Map<List<Integer>, Integer> memo = new HashMap<>();
     private String inputString;
     private int maxDistinctChars;
 
     public int maxPartitionsAfterOperations(String s, int k) {
-                    this.inputString = s;
+        this.inputString = s;
         this.maxDistinctChars = k;
         // Start DFS from position 0, empty bitmask, with 1 change allowed
         return dfs(0, 0, 1);
@@ -67,3 +69,4 @@ class Solution {
         return maxPartitions;
     }
 }
+
