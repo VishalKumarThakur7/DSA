@@ -1,47 +1,41 @@
 class Solution {
-    int m, n;
+    public int numEnclaves(int[][] mat) {
+        int n = mat.length;
+        int m = mat[0].length;
 
-    public int numEnclaves(int[][] grid) {
-        m = grid.length;
-        n = grid[0].length;
-
-       
-        for (int j = 0; j < n; j++) {
-            if (grid[0][j] == 1)
-                dfs(grid, 0, j);
-            if (grid[m - 1][j] == 1)
-                dfs(grid, m - 1, j);
+        for (int i = 0; i < n; i++) {
+            if (mat[i][0] == 1) 
+                dfs(mat, i, 0);
+            if (mat[i][m - 1] == 1)
+                dfs(mat, i, m - 1);
         }
 
-        
         for (int i = 0; i < m; i++) {
-            if (grid[i][0] == 1)
-                dfs(grid, i, 0);
-            if (grid[i][n - 1] == 1)
-                dfs(grid, i, n - 1);
+            if (mat[0][i] == 1) 
+                dfs(mat, 0, i);
+            if (mat[n - 1][i] == 1)
+                dfs(mat, n - 1, i);
         }
 
-        
-        int count = 0;
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                if (grid[i][j] == 1)
-                    count++;
+        int res = 0;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                res += mat[i][j];
             }
         }
 
-        return count;
+        return res;
+        
     }
 
-    private void dfs(int[][] grid, int i, int j) {
-        if (i < 0 || j < 0 || i >= m || j >= n || grid[i][j] == 0)
-            return;
-
-        grid[i][j] = 0;
-
-        dfs(grid, i + 1, j);
-        dfs(grid, i - 1, j);
-        dfs(grid, i, j + 1);
-        dfs(grid, i, j - 1);
+    static void dfs(int[][] mat, int r, int c) {
+        if (r < mat.length && r > -1 && c < mat[0].length && c > -1 && mat[r][c] == 1) {
+            mat[r][c] = 0;
+            dfs(mat, r + 1, c);
+            dfs(mat, r - 1, c);
+            dfs(mat, r, c + 1);
+            dfs(mat, r, c - 1);
+        }
+        
     }
 }
