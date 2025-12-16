@@ -19,4 +19,5 @@ class Solution {
         dp[n] = climbStairsRecursive(n - 1, dp) + climbStairsRecursive(n - 2, dp);
         return dp[n];
     }
-}
+}            //time complexity = O(n)//
+
